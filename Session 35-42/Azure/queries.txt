@@ -1,0 +1,55 @@
+CREATE SCHEMA layer3
+
+CREATE MASTER KEY ENCRYPTION BY PASSWORD = 'YourStrong@Password123!';
+
+CREATE DATABASE SCOPED CREDENTIAL shri
+WITH 
+    IDENTITY = 'Managed Identity'
+
+CREATE EXTERNAL DATA SOURCE src_layer2
+WITH
+(
+    LOCATION = 'https://demostoragedl.dfs.core.windows.net/layer2',
+    CREDENTIAL = shri
+)
+
+CREATE EXTERNAL DATA SOURCE load_layer3
+WITH
+(
+    LOCATION = 'https://demostoragedl.dfs.core.windows.net/layer3',
+    CREDENTIAL = shri
+)
+
+CREATE EXTERNAL FILE FORMAT parquetform
+WITH
+(
+    FORMAT_TYPE = PARQUET,
+    DATA_COMPRESSION = 'org.apache.hadoop.io.compress.SnappyCodec'
+)
+
+CREATE EXTERNAL TABLE layer3.employee
+WITH
+(
+    LOCATION = 'employee',
+    DATA_SOURCE = load_layer3,
+    FILE_FORMAT = parquetform
+)
+AS
+SELECT * FROM layer3.emptable
+
+SELECT * FROM layer3.employee
+
+
+
+
+
+CREATE VIEW layer3.emptable
+AS
+SELECT 
+    * 
+FROM 
+    OPENROWSET
+        (
+            BULK 'https://demostoragedl.dfs.core.windows.net/layer2/Employee details/',
+            FORMAT = 'PARQUET'
+        ) as Querr

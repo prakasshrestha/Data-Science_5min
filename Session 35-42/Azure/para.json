@@ -1,0 +1,34 @@
+[
+  {
+    "url" : "shridhar5me/Project/refs/heads/main/Data/course.csv",
+    "datasink" : "Course Details",
+    "filesin" : "course.csv"
+  },
+
+  {
+    "url" : "shridhar5me/Project/refs/heads/main/Data/employee.csv",
+    "datasink" : "Employee details",
+    "filesin" : "employee.csv"
+  },
+
+  {
+    "url" : "shridhar5me/Project/refs/heads/main/Data/empstudy.csv",
+    "datasink" : "Employee-Study",
+    "filesin" : "empstudy.csv"
+  },
+
+  {
+    "url" : "shridhar5me/Project/refs/heads/main/Data/income.csv",
+    "datasink" : "Income Details",
+    "filesin" : "income.csv"
+  },
+
+  {
+    "url" : "shridhar5me/Project/refs/heads/main/Data/languages.csv",
+    "datasink" : "Language Details",
+    "filesin" : "languages.csv"
+  }
+
+
+
+]
